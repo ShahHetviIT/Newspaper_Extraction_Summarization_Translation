@@ -1,0 +1,173 @@
+.header {
+  z-index: 1;
+  position: fixed; /* Make the header fixed at the top */
+  top: 0;
+  left: 0;
+  width: 96%; /* Ensure the header spans the full width */
+  display: flex;
+  padding: 15px 30px;
+  background-color: aqua;
+  gap: 10px;
+  justify-content: space-between;
+  align-items: center;
+  height: 50px;
+}
+
+/* Center the date picker container */
+.date-picker-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f0f4f8;
+}
+
+/* Custom input styles */
+.custom-date-picker {
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  width: 250px;
+}
+
+/* Input focus styles */
+.react-datepicker__input-container input {
+  padding: 8px 12px;
+  font-size: 14px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  width: 87%;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.react-datepicker__input-container input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Styles for the open datepicker dialog box */
+.react-datepicker {
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  border: 1px solid #ddd;
+}
+
+.react-datepicker__header {
+  background-color: #007bff;
+  color: white;
+  border-bottom: 1px solid #007bff;
+  border-radius: 8px 8px 0 0;
+}
+
+.react-datepicker__current-month {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.react-datepicker__day-name,
+.react-datepicker__day,
+.react-datepicker__time-name {
+  width: 40px;
+  line-height: 40px;
+  margin: 0;
+}
+
+.react-datepicker__day {
+  font-weight: bold;
+  color: #007bff;
+}
+
+.react-datepicker__day:hover {
+  background-color: #e2e6ea;
+  border-radius: 50%;
+}
+
+.react-datepicker__day--selected {
+  background-color: #007bff;
+  color: white;
+  border-radius: 50%;
+}
+
+.react-datepicker__day--today {
+  font-weight: bold;
+  color: #ff5252;
+}
+
+/* Container for the date picker dialog */
+.react-datepicker__tab-loop {
+  max-width: 250px; /* Set desired width */
+  max-height: 300px; /* Set desired height */
+  font-size: 14px; /* Adjust font size */
+}
+
+/* Date picker popup */
+.react-datepicker-popper {
+  z-index: 2;
+}
+
+.react-datepicker__month-container {
+  width: 100%; /* Ensures the month container fits within the dialog */
+}
+
+.react-datepicker__day-name,
+.react-datepicker__day,
+.react-datepicker__time-name {
+  width: 1.7rem; /* Adjust day cell width */
+  line-height: 1.7rem; /* Adjust day cell height */
+}
+
+/* Header (Month and Year section) */
+.react-datepicker__header {
+  background-color: #007bff; /* Add custom background color */
+  color: white;
+  border-bottom: 1px solid #ccc;
+  padding: 10px 0;
+}
+
+.react-datepicker__current-month {
+  font-size: 13px;
+  font-weight: bold;
+}
+
+/* Days of the week (Sun, Mon, etc.) */
+.react-datepicker__day-name {
+  font-weight: bold;
+}
+
+/* Selected day */
+.react-datepicker__day--selected {
+  background-color: #007bff;
+  color: white;
+}
+
+/* Hover effect */
+.react-datepicker__day:hover {
+  background-color: #f0f4f8;
+}
+
+/* Navigation arrows */
+.react-datepicker__navigation-icon::before {
+  border-color: white;
+}
+
+.react-datepicker__navigation {
+  top: 10px;
+  height: 10px;
+  width: 10px;
+}
+
+.react-datepicker__navigation--previous {
+  left: 10px;
+}
+
+.react-datepicker__navigation--next {
+  right: 10px;
+}
+
+.container2 {
+  display: flex;
+  gap: 20px;
+}

@@ -1,0 +1,19 @@
+/* App.css or equivalent CSS file */
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+}
+.app-container {
+  display: flex;
+  height: 100vh; /* Ensures the container takes full height */
+  width: 100%; /* Ensures the container takes full width */
+  margin-top: 80px;
+}
+
+.newsDisplay {
+  margin-left: 15%; /* Matches the width of the sidebar */
+  width: 85%; /* Takes up the remaining space */
+  padding: 20px;
+}
+

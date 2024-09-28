@@ -1,0 +1,89 @@
+.newsConatiner {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.heading {
+  text-align: center;
+  font-weight: bold;
+  font-size: 30px;
+}
+
+.newsList {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.newsBox {
+  background: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative; /* Make sure positioning is relative for the pseudo-element */
+  padding-left: 30px; /* Add space on the left for the bullet point */
+}
+
+.newsBox::before {
+  content: ""; /* Bullet point character */
+  color: black; /* Bullet point color */
+  font-size: 18px; /* Bullet point size */
+  position: absolute;
+  left: 10px; /* Position bullet point to the left */
+  top: 30px; /* Adjust top to align with the text */
+}
+
+.newsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* From Uiverse.io by aasisodiya */
+.summerizeButton {
+  background-color: #eee;
+  border: none;
+  padding: 0.5rem;
+  font-size: 0.7rem;
+  width: 7.5em;
+  border-radius: 1rem;
+  color: lightcoral;
+  box-shadow: 0 0.3rem #dfd9d9;
+  cursor: pointer;
+}
+
+.summerizeButton:active {
+  color: white;
+  box-shadow: 0 0.2rem #dfd9d9;
+  transform: translateY(0.2rem);
+  border: none;
+}
+
+.summerizeButton:hover:not(:disabled) {
+  background: lightcoral;
+  color: white;
+  text-shadow: 0 0.1rem #bcb4b4;
+}
+
+.summerizeButton:disabled {
+  cursor: auto;
+  color: grey;
+}
+
+.newsButtons {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+
+.selectLanguage {
+  padding: 8.5px;
+  /* border: none; */
+  border-radius: 6px;
+}

@@ -1,0 +1,13 @@
+.sideBarContainer1{
+    height: 100vh;
+    background: blanchedalmond;
+    width: 15%;
+    position: fixed;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.sideBarContainer2{
+    display: flex;
+    flex-direction: column;
+}
