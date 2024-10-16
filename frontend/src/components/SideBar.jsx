@@ -46,7 +46,7 @@ export default function SideBar({
   selectedCategory,
   setSelectedCategory,
   date,
-  language,
+  // language,
   fetchDataTrigger,
   setFetchDataTrigger,
 }) {
@@ -55,7 +55,7 @@ export default function SideBar({
   useEffect(() => {
     setCategories([]);
     if (fetchDataTrigger) {
-      console.log(date + "----" + language + "----" + fetchDataTrigger);
+      // console.log(date + "----" + language + "----" + fetchDataTrigger);
       // Fetch categories from the AP
       fetch("http://127.0.0.1:5000/api/predict-categories")
         .then((response) => response.json())
@@ -70,7 +70,7 @@ export default function SideBar({
 
       // console.log(categories);
     }
-  }, [fetchDataTrigger, date, language]);
+  }, [fetchDataTrigger, date]);
 
   useEffect(() => {
     // Reset fetchDataTrigger to prevent infinite loop
