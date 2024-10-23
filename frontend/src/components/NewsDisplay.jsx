@@ -313,7 +313,7 @@ export default function NewsDisplay({
     // Call the translation API
     try {
       const response = await fetch(
-        `http://127.0.0.1:5000/api/translate-news?title=${title}&language=${language}&summarized=false`
+        `http://127.0.0.1:5000/api/translate-news?title=${title}&language=${language}&summarized=true`
       );
       const data = await response.json();
 

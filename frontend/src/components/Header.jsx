@@ -30,7 +30,7 @@ export default function Header({ onDateChange, onLanguageChange }) {
 
   return (
     <div className="header">
-      <div>Newspaper</div>
+      <div><h1>NewsFusion</h1></div>
       <div className="container2">
         <div>
           <DatePicker

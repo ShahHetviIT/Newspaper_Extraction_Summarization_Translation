@@ -5,6 +5,8 @@
     position: fixed;
     padding: 20px;
     box-sizing: border-box;
+    background: linear-gradient(135deg, #ffffff 66%, #8e7b73 50%); /* Diagonal mix of black and white */
+    color: #000000;
 }
 
 .sideBarContainer2{

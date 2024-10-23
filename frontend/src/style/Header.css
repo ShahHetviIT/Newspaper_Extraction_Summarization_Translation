@@ -11,6 +11,8 @@
   justify-content: space-between;
   align-items: center;
   height: 50px;
+  background: linear-gradient(135deg, #ffffff 50%, #8e7b73 50%); /* Diagonal mix of black and white */
+    color: #000000;
 }
 
 /* Center the date picker container */

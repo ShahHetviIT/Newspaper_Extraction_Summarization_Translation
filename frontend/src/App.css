@@ -1,19 +1,23 @@
 /* App.css or equivalent CSS file */
 
-html, body, #root {
+html,
+body,
+#root {
   height: 100%;
   margin: 0;
 }
 .app-container {
   display: flex;
-  height: 100vh; /* Ensures the container takes full height */
+  /* height: 100vh; Ensures the container takes full height */
   width: 100%; /* Ensures the container takes full width */
   margin-top: 80px;
 }
 
 .newsDisplay {
+  border-top-left-radius: 15px;
+  background-color: #e6d1c1; /* A little darker than #f4f1ea */
+    color: #2f2f2f; /* Darker than #3e3e3e */
   margin-left: 15%; /* Matches the width of the sidebar */
   width: 85%; /* Takes up the remaining space */
   padding: 20px;
 }
-
