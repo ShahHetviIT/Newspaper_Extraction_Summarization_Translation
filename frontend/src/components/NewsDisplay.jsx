@@ -277,9 +277,9 @@
 //   );
 // }
 
-
 import React, { useEffect, useState } from "react";
 import "../style/NewsDisplay.css";
+import loadingGif from "../images/kOnzy.gif";
 
 export default function NewsDisplay({
   selectedCategory,
@@ -292,6 +292,7 @@ export default function NewsDisplay({
 
   const [showMore, setShowMore] = useState({});
   const [summarizedText, setSummarizedText] = useState([]);
+  const [showSummarizeButton, setShowSummarizeButton] = useState(true);
   const [selectedLanguages, setSelectedLanguages] = useState({}); // Changed from single language to an object
 
   const toggleShowMore = (index) => {
@@ -303,24 +304,33 @@ export default function NewsDisplay({
 
   const handleLanguageChange = async (event, title, index) => {
     const language = event.target.value;
+
     setSelectedLanguages((prevState) => ({
       ...prevState,
       [index]: language, // Track language per news item
     }));
     console.log(language + "--" + title + "--" + index);
-    console.log("http://127.0.0.1:5000/api/translate-news?title="+encodeURIComponent(title)+"&language="+language);
+    console.log(
+      "http://127.0.0.1:5001/api/translate-news?title=" +
+        encodeURIComponent(title) +
+        "&language=" +
+        language
+    );
+
+    const isSummarized = !!summarizedText[index];
+    console.log(isSummarized);
 
     // Call the translation API
     try {
       const response = await fetch(
-        `http://127.0.0.1:5000/api/translate-news?title=${title}&language=${language}&summarized=true`
+        `http://127.0.0.1:5001/api/translate-news?title=${title}&language=${language}&summarized=${isSummarized}`
       );
       const data = await response.json();
 
       // if (data.translatedText) {
-        const updatedSummaries = [...summarizedText];
-        updatedSummaries[index] = data.translated_content; // Save the translated text
-        setSummarizedText(updatedSummaries);
+      const updatedSummaries = [...summarizedText];
+      updatedSummaries[index] = data.translated_content; // Save the translated text
+      setSummarizedText(updatedSummaries);
       // } else {
       //   console.error("No translation found");
       // }
@@ -361,7 +371,7 @@ export default function NewsDisplay({
         setSelectedCategory("All");
 
         response = await fetch(
-          `http://127.0.0.1:5000/api/get-news?api_key=95bb6bf55ec742bca7cfeb768f50245f&date=${date}&language=en`
+          `http://127.0.0.1:5001/api/get-news?api_key=95bb6bf55ec742bca7cfeb768f50245f&date=${date}&language=en`
         );
 
         const data = await response.json();
@@ -372,6 +382,7 @@ export default function NewsDisplay({
         } else if (Array.isArray(data)) {
           console.log(date, "Fetched data:", data);
           setNewsData(data); // Set newsData to data directly if it's an array
+          setIsLoading(false);
         } else {
           setNewsData([]); // Set an empty array if neither is an array
         }
@@ -380,7 +391,6 @@ export default function NewsDisplay({
         setNewsData([]);
       } finally {
         setShowMore({});
-        setIsLoading(false);
         setFetchDataTrigger(true);
       }
     };
@@ -400,7 +410,7 @@ export default function NewsDisplay({
         if (selectedCategory === "All" || !selectedCategory) {
           console.log("api date: " + date);
           response = await fetch(
-            `http://127.0.0.1:5000/api/get-news?api_key=41817dbc42cb43eba4fc5899666f1061&date=2024-09-19&language=en`
+            `http://127.0.0.1:5001/api/get-news?api_key=41817dbc42cb43eba4fc5899666f1061&date=2024-09-19&language=en`
           );
         } else {
           let formattedCategory = selectedCategory;
@@ -412,7 +422,7 @@ export default function NewsDisplay({
           console.log(formattedCategory);
 
           response = await fetch(
-            `http://127.0.0.1:5000/api/filter_news?category=${formattedCategory}`
+            `http://127.0.0.1:5001/api/filter_news?category=${formattedCategory}`
           );
         }
 
@@ -424,6 +434,7 @@ export default function NewsDisplay({
         } else if (Array.isArray(data)) {
           console.log("Fetched data:", data);
           setNewsData(data);
+          setIsLoading(false);
         } else {
           setNewsData([]);
         }
@@ -432,26 +443,42 @@ export default function NewsDisplay({
         setNewsData([]);
       } finally {
         setShowMore({});
-        setIsLoading(false);
       }
     };
 
     fetchNews();
   }, [selectedCategory]);
 
-  if (isLoading) {
-    return <p>Loading news...</p>;
+  if (isLoading || !Array.isArray(newsData) || newsData.length === 0) {
+    return (
+      <div
+        style={{
+          height: "100vh",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          flexDirection: "column",
+        }}
+      >
+        <img
+          src={loadingGif}
+          alt="Loading"
+          style={{ width: "100px", height: "100px" }} // Adjust size as needed
+        />
+        <h1 style={{ marginTop: "20px" }}>Loading news...</h1>
+      </div>
+    );
   }
 
-  if (!Array.isArray(newsData) || newsData.length === 0) {
-    return <p>No news available for the selected category.</p>;
-  }
+  // if (!Array.isArray(newsData) || newsData.length === 0) {
+  //   return <p>No news available for the selected category.</p>;
+  // }
 
   const textSummarize = async (title, index) => {
     try {
       console.log(title);
       const response = await fetch(
-        `http://127.0.0.1:5000/api/summarize-news?title=${title}`
+        `http://127.0.0.1:5001/api/summarize-news?title=${title}`
       );
       const data = await response.json();
       if (data.summary) {
@@ -523,12 +550,14 @@ export default function NewsDisplay({
               </p>
             </div>
             <div className="newsButtons">
-              <button
-                onClick={() => textSummarize(item.title, index)}
-                className="summerizeButton"
-              >
-                Summarize
-              </button>
+              {showSummarizeButton && (
+                <button
+                  onClick={() => textSummarize(item.title, index)}
+                  className="summerizeButton"
+                >
+                  Summarize
+                </button>
+              )}
               <select
                 id="languages"
                 className="selectLanguage"

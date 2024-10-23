@@ -57,7 +57,7 @@ export default function SideBar({
     if (fetchDataTrigger) {
       // console.log(date + "----" + language + "----" + fetchDataTrigger);
       // Fetch categories from the AP
-      fetch("http://127.0.0.1:5000/api/predict-categories")
+      fetch("http://127.0.0.1:5001/api/predict-categories")
         .then((response) => response.json())
         .then((data) => {
           if (data.categories) {
